@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".Maps"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -31,7 +31,21 @@
 
         <activity
             android:name=".TaskDetails"
-            android:label="@string/title_activity_task_details"></activity>
+            android:label="@string/title_activity_task_details" />
+        <activity
+            android:name=".TaskListActivity"
+            android:label="@string/title_task_list"></activity>
+        <activity
+            android:name=".TaskDetailActivity"
+            android:label="@string/title_task_detail"
+            android:parentActivityName=".TaskListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.crutchbike.disablepeoples.TaskListActivity" />
+        </activity>
+        <activity
+            android:name=".AddTask"
+            android:label="@string/title_activity_add_task"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

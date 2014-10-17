@@ -173,12 +173,25 @@ public class Maps extends FragmentActivity {
                     Detail.HTTPConnector = HTTPConnector;
 
                         Detail.show(getFragmentManager(), null);
-
-                    // Toast.makeText(getBaseContext(), MarkersTasks.get(marker).getString("date"), Toast.LENGTH_SHORT).show();
-
                         return true;
                     }
                 return false;
+            }
+        });
+
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng point) {
+
+                Marker TaskPos = mMap.addMarker(new MarkerOptions().position(point).title(getString(R.string.CurrentMarkerTitle)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+                AddTaskDialog AddTask = new AddTaskDialog();
+                //Detail.task = MarkersTasks.get(marker);
+                AddTask.point = point;
+                AddTask.HTTPConnector = HTTPConnector;
+
+                AddTask.show(getFragmentManager(), null);
+
             }
         });
     }

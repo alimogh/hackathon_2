@@ -72,12 +72,12 @@ public class TaskDetailDialog extends DialogFragment {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {
-                Toast.makeText(inflater.getContext(), getString(R.string.TaskAccepted), Toast.LENGTH_SHORT).show();
+                Toast.makeText(inflater.getContext(), inflater.getContext().getString(R.string.TaskAccepted), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseBody, Throwable e) {
-                Toast.makeText(inflater.getContext(), getString(R.string.ConnectionError), Toast.LENGTH_SHORT).show();
+                Toast.makeText(inflater.getContext(), inflater.getContext().getString(R.string.ConnectionError), Toast.LENGTH_SHORT).show();
             }
 
         });

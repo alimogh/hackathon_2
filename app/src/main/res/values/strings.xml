@@ -8,4 +8,8 @@
     <string name="LoginButton">Войти</string>
     <string name="title_activity_maps">Карта</string>
     <string name="CurrentMarkerTitle">Это Вы</string>
+    <string name="LoginSpinner">Вход...</string>
+    <string name="LoginConnectionError">Ошибка входа. Проверьте интернет соъединение.</string>
+    <string name="LoginIncorrect">Неверный логин или пароль</string>
+    <string name="ConnectionError">Соъединение разорвано.</string>
 </resources>

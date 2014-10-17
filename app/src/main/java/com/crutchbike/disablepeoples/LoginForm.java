@@ -1,9 +1,11 @@
 package com.crutchbike.disablepeoples;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class LoginForm extends Activity {
@@ -32,5 +34,12 @@ public class LoginForm extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void onLoginButton(View v)
+    {
+        Intent intent = new Intent(LoginForm.this, Maps.class);
+        startActivity(intent);
     }
 }

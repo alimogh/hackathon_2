@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="0dp"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -22,15 +22,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/Login"
         android:layout_below="@+id/textView2"
+        android:inputType="textWebEmailAddress"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp" />
+         />
 
     <TextView
         android:text="@string/PasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="50dp"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
 
@@ -38,9 +39,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Password"
-        android:layout_marginTop="147dp"
+        android:layout_marginTop="70dp"
         android:layout_below="@+id/textView2"
+        android:inputType="textPassword"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/LoginButton"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/Password"
+        android:layout_centerHorizontal="true"
+        android:onClick="onLoginButton"
+        android:text="@string/LoginButton"/>
 
 
 </RelativeLayout>

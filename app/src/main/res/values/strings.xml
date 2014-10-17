@@ -3,8 +3,9 @@
 
     <string name="app_name">DisablePeoples</string>
     <string name="action_settings">Настройки</string>
-    <string name="LoginText">Логин/Email:</string>
+    <string name="LoginText">Email:</string>
     <string name="PasswordText">Пароль:</string>
-
-
+    <string name="LoginButton">Войти</string>
+    <string name="title_activity_maps">Карта</string>
+    <string name="CurrentMarkerTitle">Это Вы</string>
 </resources>

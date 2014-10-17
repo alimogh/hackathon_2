@@ -168,12 +168,17 @@ public class Maps extends FragmentActivity {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 try {
-                    //TODO:Make something else
-                    // if(LastClicked==marker) {
-                    Toast.makeText(getBaseContext(), MarkersTasks.get(marker).getString("date"), Toast.LENGTH_SHORT).show();
-                    //}
 
-                    // LastClicked=marker;
+                    if (MarkersTasks.get(marker) != null) {
+                        TaskDetailDialog Detail = new TaskDetailDialog();
+                        Detail.task = MarkersTasks.get(marker);
+
+                        Detail.show(getFragmentManager(), null);
+
+                        Toast.makeText(getBaseContext(), MarkersTasks.get(marker).getString("date"), Toast.LENGTH_SHORT).show();
+
+                        return true;
+                    }
                 } catch (JSONException e) {
                 }
                 return false;

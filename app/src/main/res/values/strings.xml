@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DisablePeoples</string>
+    <string name="action_settings">Настройки</string>
+    <string name="LoginText">Логин/Email:</string>
+    <string name="PasswordText">Пароль:</string>
+
+
+</resources>

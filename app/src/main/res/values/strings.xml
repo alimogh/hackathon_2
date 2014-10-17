@@ -9,12 +9,13 @@
     <string name="title_activity_maps">Карта</string>
     <string name="CurrentMarkerTitle">Это Вы</string>
     <string name="LoginSpinner">Вход...</string>
-    <string name="LoginConnectionError">Ошибка входа. Проверьте интернет соъединение.</string>
+    <string name="LoginConnectionError">Ошибка входа. Проверьте интернет соединение.</string>
     <string name="LoginIncorrect">Неверный логин или пароль</string>
-    <string name="ConnectionError">Соъединение разорвано.</string>
+    <string name="ConnectionError">Соединение разорвано.</string>
     <string name="title_activity_task_details">Информация о заявке</string>
     <string name="BackToMap">Отмена</string>
     <string name="AcceptTask">Принять заявку</string>
+    <string name="TaskAccepted">Вы приняли заявку</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

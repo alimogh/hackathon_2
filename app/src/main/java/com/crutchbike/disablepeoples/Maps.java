@@ -41,13 +41,13 @@ public class Maps extends FragmentActivity {
 
     Boolean TrackLocation = true;
 
-    String UserLogin = "";
-    String UserPassword = "";
-    String UserSession = "";
+    String LFUserLogin = "";
+    String LFUserPassword = "";
+    String LFUserSession = "";
 
     int FailCount = 3;
 
-    ApiHTTPConnector HTTPConnector = new ApiHTTPConnector();
+    public ApiHTTPConnector HTTPConnector = new ApiHTTPConnector();
 
 
     //Start marker update timer
@@ -116,7 +116,7 @@ public class Maps extends FragmentActivity {
                 Marker M = Markers.get(task.getString("id"));
 
                 if (M == null) {
-                    M = mMap.addMarker(new MarkerOptions().position(new LatLng(task.getDouble("lat"), task.getDouble("lng"))).title(task.getString("about")).snippet(task.getString("address") + "\r\n" + task.getString("date")).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    M = mMap.addMarker(new MarkerOptions().position(new LatLng(task.getDouble("lat"), task.getDouble("lng"))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                     Markers.put(task.getString("id"), M);
                     MarkersTasks.put(M, task);
                 } else {
@@ -138,11 +138,11 @@ public class Maps extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         //Get user info
-        UserLogin = getIntent().getStringExtra("UserLogin");
-        UserPassword = getIntent().getStringExtra("UserPassword");
-        UserSession = getIntent().getStringExtra("UserSession");
+        LFUserLogin = getIntent().getStringExtra("LFUserLogin");
+        LFUserPassword = getIntent().getStringExtra("LFUserPassword");
+        LFUserSession = getIntent().getStringExtra("LFUserSession");
 
-        Toast.makeText(getBaseContext(), UserPassword, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), LFUserLogin, Toast.LENGTH_SHORT).show();
 
 
         setContentView(R.layout.activity_maps);
@@ -167,20 +167,17 @@ public class Maps extends FragmentActivity {
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                try {
-
-                    if (MarkersTasks.get(marker) != null) {
+                if (MarkersTasks.get(marker) != null) {
                         TaskDetailDialog Detail = new TaskDetailDialog();
                         Detail.task = MarkersTasks.get(marker);
+                    Detail.HTTPConnector = HTTPConnector;
 
                         Detail.show(getFragmentManager(), null);
 
-                        Toast.makeText(getBaseContext(), MarkersTasks.get(marker).getString("date"), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getBaseContext(), MarkersTasks.get(marker).getString("date"), Toast.LENGTH_SHORT).show();
 
                         return true;
                     }
-                } catch (JSONException e) {
-                }
                 return false;
             }
         });

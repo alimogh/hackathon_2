@@ -52,9 +52,13 @@ public class LoginForm extends Activity {
         EditText UserLogin = (EditText) findViewById(R.id.Login);
         EditText UserPassword = (EditText) findViewById(R.id.Password);
 
-        intent.putExtra("UserLogin", UserLogin.getText());
-        intent.putExtra("UserPassword", UserPassword.getText());
-        intent.putExtra("UserSession", session);
+
+        intent.putExtra("LFUserLogin", UserLogin.getText().toString());
+        intent.putExtra("LFUserPassword", UserPassword.getText().toString());
+        intent.putExtra("LFUserSession", session);
+
+        //Toast.makeText(getBaseContext(), UserLogin.getText(), Toast.LENGTH_SHORT).show();
+
 
         startActivity(intent);
     }

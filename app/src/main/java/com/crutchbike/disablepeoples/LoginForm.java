@@ -63,7 +63,7 @@ public class LoginForm extends Activity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {
-                Toast.makeText(getBaseContext(), responseBody, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), responseBody, Toast.LENGTH_SHORT).show();
                 progressBar.hide();
                 //TODO:User session
                 EditText UserLogin = (EditText) findViewById(R.id.Login);

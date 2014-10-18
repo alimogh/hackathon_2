@@ -51,6 +51,7 @@ public class AddTaskDialog extends DialogFragment {
         TAbout = (TextView) ActivityHandle.findViewById(R.id.About);
         TDate = (DatePicker) ActivityHandle.findViewById(R.id.Date);
         TTime = (TimePicker) ActivityHandle.findViewById(R.id.Time);
+        TTime.setIs24HourView(true);
 
 
         builder.setView(ActivityHandle)

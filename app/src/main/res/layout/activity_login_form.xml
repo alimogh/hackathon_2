@@ -1,4 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,16 +16,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Login"
         android:layout_below="@+id/textView2"
         android:inputType="textWebEmailAddress"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal"
          />
 
     <TextView
@@ -31,28 +34,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:layout_marginTop="50dp"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Password"
-        android:layout_marginTop="70dp"
         android:layout_below="@+id/textView2"
         android:inputType="textPassword"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LoginButton"
-        android:layout_marginTop="50dp"
         android:layout_below="@+id/Password"
         android:layout_centerHorizontal="true"
         android:onClick="onLoginButton"
-        android:text="@string/LoginButton"/>
+        android:text="@string/LoginButton"
+        android:layout_gravity="center_vertical|center_horizontal" />
 
 
-</RelativeLayout>
+</LinearLayout>

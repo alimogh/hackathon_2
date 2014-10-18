@@ -33,7 +33,7 @@
             android:name=".TaskDetails"
             android:label="@string/title_activity_task_details" />
         <activity
-            android:name=".TaskListActivity"
+            android:name=".TaskList"
             android:label="@string/title_task_list"></activity>
         <activity
             android:name=".TaskDetailActivity"

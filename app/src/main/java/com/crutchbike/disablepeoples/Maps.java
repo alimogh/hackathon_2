@@ -48,10 +48,11 @@ public class Maps extends FragmentActivity {
     String LFUserLogin = "";
     String LFUserPassword = "";
     String LFUserSession = "";
+    String LastJSON = "";
 
     int FailCount = 3;
 
-    public ApiHTTPConnector HTTPConnector = new ApiHTTPConnector();
+    public ApiHTTPConnector HTTPConnector;//= new ApiHTTPConnector();
 
 
     //Start marker update timer
@@ -110,7 +111,7 @@ public class Maps extends FragmentActivity {
 
     public void ParseTasks(String jsonStr) {
         try {
-            String temp = "";
+            LastJSON = jsonStr;
 
             JSONObject ServerObject = new JSONObject(jsonStr);
             JSONArray tasks = ServerObject.getJSONArray("tasks");
@@ -140,6 +141,8 @@ public class Maps extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        HTTPConnector = Globals.HTTPApi;
 
         //Get user info
         LFUserLogin = getIntent().getStringExtra("LFUserLogin");
@@ -175,7 +178,6 @@ public class Maps extends FragmentActivity {
                         TaskDetailDialog Detail = new TaskDetailDialog();
                         Detail.task = MarkersTasks.get(marker);
                     Detail.HTTPConnector = HTTPConnector;
-
                         Detail.show(getFragmentManager(), null);
                         return true;
                 } else {
@@ -238,7 +240,9 @@ public class Maps extends FragmentActivity {
     }
 
     public void onTaskListClick(MenuItem item) {
-        finish();
+        Intent intent = new Intent(Maps.this, TaskList.class);
+        intent.putExtra("JSONData", LastJSON);
+        startActivity(intent);
     }
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly

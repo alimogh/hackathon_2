@@ -30,16 +30,12 @@ public class LoginForm extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.login_form, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -52,13 +48,12 @@ public class LoginForm extends Activity {
         EditText UserLogin = (EditText) findViewById(R.id.Login);
         EditText UserPassword = (EditText) findViewById(R.id.Password);
 
+        Globals.HTTPApi = HTTPClient;
+
 
         intent.putExtra("LFUserLogin", UserLogin.getText().toString());
         intent.putExtra("LFUserPassword", UserPassword.getText().toString());
         intent.putExtra("LFUserSession", session);
-
-        //Toast.makeText(getBaseContext(), UserLogin.getText(), Toast.LENGTH_SHORT).show();
-
 
         startActivity(intent);
     }
@@ -78,6 +73,7 @@ public class LoginForm extends Activity {
                 Toast.makeText(getBaseContext(), responseBody,
                         Toast.LENGTH_SHORT).show();
                 progressBar.hide();
+                //TODO:User session
                 goToMap("123");
             }
 

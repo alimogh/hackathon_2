@@ -14,7 +14,7 @@
         android:id="@+id/cabinet"
         android:title="@string/Cabinet"
         android:orderInCategory="100"
-        android:onClick="onExitClick"
+
         android:showAsAction="never" />
 
     <item

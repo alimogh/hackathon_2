@@ -92,12 +92,14 @@ public class Maps extends FragmentActivity {
 
 
     public void UpdateTasks() {
-        HTTPConnector.get("/tasks", new TextHttpResponseHandler() {
+        HTTPConnector.get("/tasks.json", new TextHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {
                 ParseTasks(responseBody);
                 FailCount = 8;
+                //Toast.makeText(getBaseContext(), responseBody, Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

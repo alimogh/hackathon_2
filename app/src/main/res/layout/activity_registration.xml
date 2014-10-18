@@ -26,8 +26,7 @@
         android:layout_below="@+id/textView2"
         android:inputType="textWebEmailAddress"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_vertical|center_horizontal"
-         />
+        android:layout_gravity="center_vertical|center_horizontal" />
 
     <TextView
         android:text="@string/PasswordText"
@@ -47,6 +46,42 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical|center_horizontal" />
 
+
+    <TextView
+        android:text="Имя:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Name"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal" />
+
+    <TextView
+        android:text="Фамилия:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Surname"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical|center_horizontal" />
+
+
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -54,16 +89,6 @@
         android:layout_below="@+id/Password"
         android:layout_centerHorizontal="true"
         android:onClick="onLoginButton"
-        android:text="@string/LoginButton"
-        android:layout_gravity="center_vertical|center_horizontal" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/RegisterButton"
-        android:layout_below="@+id/LoginButton"
-        android:layout_centerHorizontal="true"
-        android:onClick="onRegisterButton"
         android:text="@string/title_activity_registration"
         android:layout_gravity="center_vertical|center_horizontal" />
 

@@ -27,11 +27,11 @@
     <string name="Loading">Загрузка...</string>
     <string name="Cabinet">Личный кабинет</string>
     <string name="ShowTaskList">Перейти на список задач</string>
-
     <string name="MapHelp1">Жёлтый маркер - ваше местоположение. Для создания заявки по своему местоположени щёлкните на маркер.
         Для создания заявки в другом месте удерживайте нужную точку 2 секунды.</string>
     <string name="MapHelp2">Активирован режим следования. Для отключения режима следования щёлкните по карте.</string>
     <string name="MapHelp3">Режим следования отключён.</string>
-
     <string name="EmergencyTemplate">Срочно требуется помощь. (Нажата кнопка тревоги)</string>
+    <string name="title_activity_registration">Регистрация</string>
+
 </resources>

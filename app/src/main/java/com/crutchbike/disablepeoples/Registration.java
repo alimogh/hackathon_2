@@ -10,12 +10,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.loopj.android.http.*;
+import com.loopj.android.http.TextHttpResponseHandler;
 
-import org.apache.http.*;
+import org.apache.http.Header;
 
 
-public class LoginForm extends Activity {
+public class Registration extends Activity {
 
 
     ApiHTTPConnector HTTPClient = new ApiHTTPConnector();
@@ -25,7 +25,7 @@ public class LoginForm extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_form);
+        setContentView(R.layout.activity_registration);
         //Setup global API connector
         Globals.HTTPApi = HTTPClient;
     }
@@ -33,7 +33,7 @@ public class LoginForm extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.login_form, menu);
+        getMenuInflater().inflate(R.menu.registration, menu);
         return true;
     }
 
@@ -47,18 +47,11 @@ public class LoginForm extends Activity {
     }
 
     public void goToMap() {
-        Intent intent = new Intent(LoginForm.this, Maps.class);
+        Intent intent = new Intent(Registration.this, Maps.class);
         startActivity(intent);
     }
 
-
-    public void onRegisterButton(View v) {
-        Intent intent = new Intent(LoginForm.this, Registration.class);
-        startActivity(intent);
-    }
-
-    public void onLoginButton(View v)
-    {
+    public void onLoginButton(View v) {
         progressBar = new ProgressDialog(v.getContext());
         progressBar.setCancelable(false);
         progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);

@@ -108,7 +108,7 @@ public class AddTaskDialog extends DialogFragment {
 
         String ReadyRequest = MakeTaskJSON(TAbout.getText().toString(), rdate, Double.toString(point.latitude), Double.toString(point.longitude));
 
-        HTTPConnector.json("/tasks", ReadyRequest, new TextHttpResponseHandler() {
+        HTTPConnector.json("/tasks.json", ReadyRequest, new TextHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {

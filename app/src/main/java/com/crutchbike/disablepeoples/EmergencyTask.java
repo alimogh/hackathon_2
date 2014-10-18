@@ -28,7 +28,7 @@ public class EmergencyTask {
 
         String ReadyRequest = MakeTaskJSON(Globals.EmergencyTemplate, "null", Double.toString(point.latitude), Double.toString(point.longitude));
 
-        Globals.HTTPApi.json("/tasks", ReadyRequest, new TextHttpResponseHandler() {
+        Globals.HTTPApi.json("/tasks.json", ReadyRequest, new TextHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {

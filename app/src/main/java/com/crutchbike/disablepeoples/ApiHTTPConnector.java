@@ -14,7 +14,7 @@ import java.io.UnsupportedEncodingException;
  * Created by андрей on 18.10.2014.
  */
 public class ApiHTTPConnector {
-    private static final String BASE_URL = "http://private-anon-0bd7be832-hackathon4.apiary-mock.com/";
+    private static final String BASE_URL = "http://hackathon2.herokuapp.com/";//"http://private-anon-0bd7be832-hackathon4.apiary-mock.com/";
 
     private AsyncHttpClient client = new AsyncHttpClient();
 

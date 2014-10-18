@@ -1,8 +1,28 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="android:Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownList</item>
+        <item name="android:popupBackground">@android:color/background_dark</item>
+    </style>
+
+    <style name="PopupMenu" parent="@style/AppTheme">
+        <item name="android:popupBackground">@android:color/background_dark</item>
+    </style>
+
+    <style name="DropDownList" parent="@style/AppTheme">
+        <!-- background of the list menu -->
+        <item name="background">@android:color/background_dark</item>
+        <item name="android:background">@android:color/background_dark</item>
+        <item name="android:popupBackground">@android:color/background_dark</item>
+        <!-- dividers -->
+        <item name="android:divider">@android:color/darker_gray</item>
+        <item name="divider">@android:color/darker_gray</item>
+        <item name="android:dividerHeight">1dip</item>
+        <!-- item selected -->
+        <item name="android:dropDownSelector">@android:color/holo_blue_dark</item>
+        <item name="android:listSelector">@android:color/holo_blue_dark</item>
     </style>
 
 </resources>

@@ -70,7 +70,7 @@ public class AddTaskDialog extends DialogFragment {
 
 
     public String MakeTaskJSON(String about, String date, String lat, String lng) {
-        //TODO:Add JSON generator
+        //TODO:Add JSON generator (Maybe (It's fastest way!))
         String result = "{ \"task\": { \"about\": \"" + about + "\", \"date\": \"" + date + "\", \"lat\": \"" + lat + "\", \"lng\": \"" + lng + "\" } }";
         return result;
     }

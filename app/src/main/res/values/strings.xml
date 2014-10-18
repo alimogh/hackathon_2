@@ -23,5 +23,8 @@
     <string name="TaskAbout">Описание задачи:</string>
     <string name="TaskDate">Дата заявки:</string>
     <string name="TaskCreateAccept">Создать заявку</string>
+    <string name="Exit">Выход</string>
+    <string name="Cabinet">Личный кабинет</string>
+    <string name="ShowTaskList">Перейти на список задач</string>
 
 </resources>

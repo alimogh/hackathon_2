@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.TextHttpResponseHandler;
+import com.loopj.android.image.SmartImageView;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -41,10 +43,22 @@ public class TaskDetailDialog extends DialogFragment {
             TextView Title = (TextView) ActivityHandle.findViewById(R.id.Dtitle);
             Title.setText(task.getString("about"));
 
+            JSONObject user = task.getJSONObject("user");
+            JSONObject city = user.getJSONObject("city");
+
             TextView Snippet = (TextView) ActivityHandle.findViewById(R.id.Dsnippet);
-            Snippet.setText(task.getString("address") + "\n\r" + task.getString("date"));
+            Snippet.setText(user.getString("name") + " " + user.getString("surname") + "\r\n" + city.getString("name") + ", " + task.getString("address") + "\n\r" + task.getString("date"));
 
             TaskId = task.getString("id");
+
+            SmartImageView imageView = (SmartImageView) ActivityHandle.findViewById(R.id.DetailsImg);
+            if (user.getString("avatar_url").length() == 0) {
+                imageView.setImageResource(R.drawable.noavatar);
+
+            } else {
+                imageView.setImageUrl(user.getString("avatar_url"));
+            }
+
 
         } catch (JSONException e) {
             e.printStackTrace();

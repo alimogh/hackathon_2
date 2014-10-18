@@ -6,4 +6,5 @@ package com.crutchbike.disablepeoples;
 public class Globals {
     public static ApiHTTPConnector HTTPApi;
     public static String Session, Login, Password, ID;
+    public static String EmergencyTemplate;
 }

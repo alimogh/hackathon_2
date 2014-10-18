@@ -97,7 +97,7 @@ public class Maps extends FragmentActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {
                 ParseTasks(responseBody);
-                FailCount = 3;
+                FailCount = 8;
             }
 
             @Override
@@ -128,8 +128,14 @@ public class Maps extends FragmentActivity {
 
                 Marker M = Markers.get(task.getString("id"));
 
+
                 if (M == null) {
-                    M = mMap.addMarker(new MarkerOptions().position(new LatLng(task.getDouble("lat"), task.getDouble("lng"))).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+                    float BeaconColor = BitmapDescriptorFactory.HUE_GREEN;
+                    if (task.getString("date").length() == 0)
+                        BeaconColor = BitmapDescriptorFactory.HUE_RED;
+
+                    M = mMap.addMarker(new MarkerOptions().position(new LatLng(task.getDouble("lat"), task.getDouble("lng"))).icon(BitmapDescriptorFactory.defaultMarker(BeaconColor)));
                     Markers.put(task.getString("id"), M);
                     MarkersTasks.put(M, task);
                 } else {
@@ -180,12 +186,13 @@ public class Maps extends FragmentActivity {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 if (MarkersTasks.get(marker) != null) {
-                        TaskDetailDialog Detail = new TaskDetailDialog();
-                        Detail.task = MarkersTasks.get(marker);
+                    TaskDetailDialog Detail = new TaskDetailDialog();
+                    Detail.task = MarkersTasks.get(marker);
                     Detail.HTTPConnector = HTTPConnector;
-                        Detail.show(getFragmentManager(), null);
-                        return true;
-                } else {
+                    Detail.show(getFragmentManager(), null);
+                    return true;
+                }
+                if (marker.equals(CurrentPos)) {
                     //Marker TaskPos = mMap.addMarker(new MarkerOptions().position(point).title(getString(R.string.CurrentMarkerTitle)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
                     AddTaskDialog AddTask = new AddTaskDialog();
                     AddTask.point = CurrentPos.getPosition();
@@ -193,7 +200,7 @@ public class Maps extends FragmentActivity {
                     AddTask.show(getFragmentManager(), null);
                     return true;
                 }
-                //return false;
+                return false;
             }
         });
 
@@ -247,6 +254,15 @@ public class Maps extends FragmentActivity {
         Toast.makeText(getBaseContext(), getString(R.string.MapHelp1), Toast.LENGTH_LONG).show();
     }
 
+
+    public void onEmergencyClick(MenuItem item) {
+        EmergencyTask AddTask = new EmergencyTask();
+        AddTask.SendEmergency(CurrentPos.getPosition(), getBaseContext());
+        // AddTask.show(getFragmentManager(), null);
+        Marker EmergencyPos = mMap.addMarker(new MarkerOptions().position(CurrentPos.getPosition()).title(getString(R.string.EmergencyTemplate)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+    }
+
+
     public void onTaskListClick(MenuItem item) {
         Intent intent = new Intent(Maps.this, TaskList.class);
         intent.putExtra("JSONData", LastJSON);
@@ -267,10 +283,6 @@ public class Maps extends FragmentActivity {
     private void setUpMap() {
         CurrentPos = mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title(getString(R.string.CurrentMarkerTitle)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.setMyLocationEnabled(true);
-
-        //CurrentPos.setPosition(new LatLng(mMap.getMyLocation().getLatitude(),mMap.getMyLocation().getAltitude()));
-
-        // System.console().printf("%s",mMap.getMyLocation().toString());
     }
 
 

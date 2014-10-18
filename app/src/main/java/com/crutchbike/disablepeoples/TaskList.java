@@ -31,10 +31,10 @@ public class TaskList extends Activity {
     List<JSONObject> Titles = new ArrayList<JSONObject>();
     JSONObject[] TaskArray;
 
-    Integer[] imageId = {
-            R.drawable.a,
-            R.drawable.abc_cab_background_bottom_holo_dark,
-    };
+    //Integer[] imageId = {
+    //        R.drawable.a,
+    //       R.drawable.abc_cab_background_bottom_holo_dark,
+    //};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class TaskList extends Activity {
         Titles.toArray(TaskArray);
 
         TaskListManager adapter = new
-                TaskListManager(TaskList.this, TaskArray, imageId);
+                TaskListManager(TaskList.this, TaskArray);
         list = (ListView) findViewById(R.id.task_list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

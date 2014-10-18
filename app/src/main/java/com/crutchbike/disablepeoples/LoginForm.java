@@ -72,6 +72,8 @@ public class LoginForm extends Activity {
                 Globals.Password = UserPassword.getText().toString();
                 Globals.Session = "123";
 
+                Globals.EmergencyTemplate = getString(R.string.EmergencyTemplate);
+
                 goToMap();
             }
 

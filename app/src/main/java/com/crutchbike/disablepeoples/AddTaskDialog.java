@@ -52,6 +52,7 @@ public class AddTaskDialog extends DialogFragment {
         TDate = (DatePicker) ActivityHandle.findViewById(R.id.Date);
         TTime = (TimePicker) ActivityHandle.findViewById(R.id.Time);
 
+
         builder.setView(ActivityHandle)
                 // Add action buttons
                 .setPositiveButton(R.string.TaskCreateAccept, new DialogInterface.OnClickListener() {
@@ -78,12 +79,15 @@ public class AddTaskDialog extends DialogFragment {
 
     public void AcceptTask() {
 
+
         //TODO: Destroy THIS Crutch
+        String rdate = "";
+
         int year = TDate.getYear();
         int month = TDate.getMonth();
         int day = TDate.getDayOfMonth();
 
-        String rdate = Integer.toString(day) + "-";
+        rdate = Integer.toString(day) + "-";
 
         if (month < 10) {
 
@@ -98,6 +102,7 @@ public class AddTaskDialog extends DialogFragment {
         } else {
             rdate += Integer.toString(day);
         }
+
         //Crutch
 
         String ReadyRequest = MakeTaskJSON(TAbout.getText().toString(), rdate, Double.toString(point.latitude), Double.toString(point.longitude));

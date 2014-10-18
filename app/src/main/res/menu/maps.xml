@@ -17,12 +17,21 @@
 
         android:showAsAction="never" />
 
+
     <item
         android:id="@+id/action_settings"
         android:title="@string/Exit"
         android:orderInCategory="100"
         android:onClick="onExitClick"
         android:showAsAction="never" />
+
+    <item
+        android:id="@+id/emergency"
+
+        android:title="⚠"
+        android:orderInCategory="100"
+        android:onClick="onEmergencyClick"
+        android:showAsAction="always" />
 
     <item
         android:id="@+id/tasklist"

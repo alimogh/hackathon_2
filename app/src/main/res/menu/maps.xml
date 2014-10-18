@@ -31,4 +31,10 @@
         android:orderInCategory="100"
         android:onClick="onTaskListClick"
         android:showAsAction="always" />
+    <item
+        android:id="@+id/help"
+        android:title="\?"
+        android:orderInCategory="100"
+        android:onClick="onHelpClick"
+        android:showAsAction="always" />
 </menu>

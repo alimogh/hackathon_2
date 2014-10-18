@@ -1,6 +1,7 @@
 package com.crutchbike.disablepeoples;
 
 import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -41,9 +42,11 @@ public class Maps extends FragmentActivity {
     Marker CurrentPos, LastClicked;
     Map<String, Marker> Markers = new HashMap<String, Marker>();
     Map<Marker, JSONObject> MarkersTasks = new HashMap<Marker, JSONObject>();
+    private ProgressDialog progressBar;
 
 
     Boolean TrackLocation = true;
+    Boolean FirstStart = true;
 
     String LFUserLogin = "";
     String LFUserPassword = "";
@@ -77,6 +80,11 @@ public class Maps extends FragmentActivity {
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(CurrentLLPos, 15.5f), 500, null);
                 }
 
+                if (FirstStart) {
+                    TrackLocation = false;
+                    FirstStart = false;
+                }
+
                 UpdateTasks();
             }
         }
@@ -97,8 +105,8 @@ public class Maps extends FragmentActivity {
                 FailCount--;
                 if (FailCount < 0) {
                     Toast.makeText(getBaseContext(), getString(R.string.ConnectionError), Toast.LENGTH_SHORT).show();
-                    goToLogin();
                     UpdateTimer.cancel();
+                    goToLogin();
                 }
             }
 
@@ -132,8 +140,6 @@ public class Maps extends FragmentActivity {
             }
 
         } catch (JSONException e) {
-            //We want ignore corrupted data
-            //e.printStackTrace();
         }
 
     }
@@ -144,12 +150,7 @@ public class Maps extends FragmentActivity {
 
         HTTPConnector = Globals.HTTPApi;
 
-        //Get user info
-        LFUserLogin = getIntent().getStringExtra("LFUserLogin");
-        LFUserPassword = getIntent().getStringExtra("LFUserPassword");
-        LFUserSession = getIntent().getStringExtra("LFUserSession");
-
-        Toast.makeText(getBaseContext(), LFUserLogin, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), getString(R.string.Loading), Toast.LENGTH_SHORT).show();
 
 
         setContentView(R.layout.activity_maps);
@@ -160,6 +161,7 @@ public class Maps extends FragmentActivity {
             @Override
             public boolean onMyLocationButtonClick() {
                 TrackLocation = true;
+                Toast.makeText(getBaseContext(), getString(R.string.MapHelp2), Toast.LENGTH_LONG).show();
                 return false;
             }
         });
@@ -167,7 +169,10 @@ public class Maps extends FragmentActivity {
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng point) {
-                TrackLocation = false;
+                if (TrackLocation) {
+                    Toast.makeText(getBaseContext(), getString(R.string.MapHelp3), Toast.LENGTH_LONG).show();
+                    TrackLocation = false;
+                }
             }
         });
 
@@ -212,21 +217,16 @@ public class Maps extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.maps, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -239,26 +239,20 @@ public class Maps extends FragmentActivity {
         finish();
     }
 
+    public void onHelpClick(MenuItem item) {
+        ShowMapHelp();
+    }
+
+    public void ShowMapHelp() {
+        Toast.makeText(getBaseContext(), getString(R.string.MapHelp1), Toast.LENGTH_LONG).show();
+    }
+
     public void onTaskListClick(MenuItem item) {
         Intent intent = new Intent(Maps.this, TaskList.class);
         intent.putExtra("JSONData", LastJSON);
         startActivity(intent);
     }
-    /**
-     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called.
-     */
+
     private void setUpMapIfNeeded() {
         if (mMap == null) {
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))

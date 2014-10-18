@@ -19,12 +19,15 @@ public class LoginForm extends Activity {
 
 
     ApiHTTPConnector HTTPClient = new ApiHTTPConnector();
+
     private ProgressDialog progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_form);
+        //Setup global API connector
+        Globals.HTTPApi = HTTPClient;
     }
 
 
@@ -43,18 +46,8 @@ public class LoginForm extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void goToMap(String session) {
+    public void goToMap() {
         Intent intent = new Intent(LoginForm.this, Maps.class);
-        EditText UserLogin = (EditText) findViewById(R.id.Login);
-        EditText UserPassword = (EditText) findViewById(R.id.Password);
-
-        Globals.HTTPApi = HTTPClient;
-
-
-        intent.putExtra("LFUserLogin", UserLogin.getText().toString());
-        intent.putExtra("LFUserPassword", UserPassword.getText().toString());
-        intent.putExtra("LFUserSession", session);
-
         startActivity(intent);
     }
 
@@ -70,11 +63,16 @@ public class LoginForm extends Activity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {
-                Toast.makeText(getBaseContext(), responseBody,
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), responseBody, Toast.LENGTH_SHORT).show();
                 progressBar.hide();
                 //TODO:User session
-                goToMap("123");
+                EditText UserLogin = (EditText) findViewById(R.id.Login);
+                EditText UserPassword = (EditText) findViewById(R.id.Password);
+                Globals.Login = UserLogin.getText().toString();
+                Globals.Password = UserPassword.getText().toString();
+                Globals.Session = "123";
+
+                goToMap();
             }
 
             @Override

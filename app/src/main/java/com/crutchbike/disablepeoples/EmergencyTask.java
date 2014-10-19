@@ -3,15 +3,12 @@ package com.crutchbike.disablepeoples;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.crutchbike.disablepeoples.Globals;
 import com.google.android.gms.maps.model.LatLng;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.apache.http.Header;
 
-/**
- * Created by андрей on 18.10.2014.
- */
+
 public class EmergencyTask {
 
     public LatLng point;
@@ -44,8 +41,9 @@ public class EmergencyTask {
     }
 
     public String MakeTaskJSON(String about, String date, String lat, String lng) {
-        //TODO:Add JSON generator (Maybe (It's fastest way!))
-        String result = "{ \"task\": { \"about\": \"" + about + "\", \"date\": \"" + date + "\", \"lat\": \"" + lat + "\", \"lng\": \"" + lng + "\" } }";
-        return result;
+        //It's not a crunch, it's a future!
+        String CombinedString = "{ 'task': { 'about': '" + about + "', 'date': '" + date + "', 'lat': '" + lat + "', 'lng': '" + lng + "' } }";
+        Toast.makeText(BaseContext, CombinedString, Toast.LENGTH_SHORT).show();
+        return CombinedString;
     }
 }

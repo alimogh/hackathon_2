@@ -4,11 +4,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +17,7 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by андрей on 18.10.2014.
- */
+
 public class TaskDetailDialog extends DialogFragment {
 
     public JSONObject task;
@@ -38,7 +34,6 @@ public class TaskDetailDialog extends DialogFragment {
         View ActivityHandle = inflater.inflate(R.layout.activity_task_details, null);
 
         try {
-            // Toast.makeText(inflater.getContext(), task.getString("date"), Toast.LENGTH_SHORT).show();
 
             TextView Title = (TextView) ActivityHandle.findViewById(R.id.Dtitle);
             Title.setText(task.getString("about"));
@@ -82,7 +77,7 @@ public class TaskDetailDialog extends DialogFragment {
     }
 
     public void AcceptTask() {
-        HTTPConnector.get("/tasks/" + TaskId + "/apply", new TextHttpResponseHandler() {
+        HTTPConnector.get("/tasks/" + TaskId + "/apply.json", new TextHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {

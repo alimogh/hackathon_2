@@ -8,8 +8,8 @@
     <string name="LoginButton">Войти</string>
     <string name="title_activity_maps">Карта</string>
     <string name="CurrentMarkerTitle">Это Вы</string>
-    <string name="LoginSpinner">Вход...</string>
-    <string name="LoginConnectionError">Ошибка входа. Проверьте интернет соединение.</string>
+    <string name="LoginSpinner">Вход…</string>
+    <string name="LoginConnectionError">Произошла ошибка. Проверьте интернет соединение.</string>
     <string name="LoginIncorrect">Неверный логин или пароль</string>
     <string name="ConnectionError">Соединение разорвано.</string>
     <string name="title_activity_task_details">Информация о заявке</string>
@@ -24,10 +24,10 @@
     <string name="TaskDate">Дата заявки:</string>
     <string name="TaskCreateAccept">Создать заявку</string>
     <string name="Exit">Выход</string>
-    <string name="Loading">Загрузка...</string>
+    <string name="Loading">Загрузка…</string>
     <string name="Cabinet">Личный кабинет</string>
     <string name="ShowTaskList">Перейти на список задач</string>
-    <string name="MapHelp1">Жёлтый маркер - ваше местоположение. Для создания заявки по своему местоположени щёлкните на маркер.
+    <string name="MapHelp1">Жёлтый маркер - ваше местоположение. Для создания заявки по своему местоположени щёлкните на маркер.\r\n
         Для создания заявки в другом месте удерживайте нужную точку 2 секунды.</string>
     <string name="MapHelp2">Активирован режим следования. Для отключения режима следования щёлкните по карте.</string>
     <string name="MapHelp3">Режим следования отключён.</string>

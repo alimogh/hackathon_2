@@ -2,6 +2,7 @@ package com.crutchbike.disablepeoples;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,9 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.loopj.android.http.*;
+import com.loopj.android.http.PersistentCookieStore;
+import com.loopj.android.http.TextHttpResponseHandler;
 
-import org.apache.http.*;
+import org.apache.http.Header;
 
 
 public class LoginForm extends Activity {
@@ -28,6 +30,13 @@ public class LoginForm extends Activity {
         setContentView(R.layout.activity_login_form);
         //Setup global API connector
         Globals.HTTPApi = HTTPClient;
+        Globals.CookManager = new PersistentCookieStore(getBaseContext());
+        Globals.HTTPApi.setCookManager(Globals.CookManager);
+        //Init storage
+        Globals.Settings = getSharedPreferences(Globals.StorageName, Context.MODE_PRIVATE);
+        Globals.Login = Globals.Settings.getString("login", "");
+        Globals.Password = Globals.Settings.getString("password", "");
+
     }
 
 
@@ -40,10 +49,7 @@ public class LoginForm extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     public void goToMap() {
@@ -65,18 +71,24 @@ public class LoginForm extends Activity {
         progressBar.setMessage(getString(R.string.LoginSpinner));
         progressBar.show();
 
-        HTTPClient.get("/tasks", new TextHttpResponseHandler() {
 
+        EditText UserLogin = (EditText) findViewById(R.id.Login);
+        EditText UserPassword = (EditText) findViewById(R.id.Password);
+        Globals.Login = UserLogin.getText().toString();
+        Globals.Password = UserPassword.getText().toString();
+
+        //TODO: Delete second line, uncomment first
+        //HTTPClient.json("/users/sign_in.json","{'user': { 'email': '"+Globals.Login+"', 'password': '"+Globals.Password+"' ,'remember_me':'0'} }", new TextHttpResponseHandler() {
+        HTTPClient.json("/users/sign_in.json", "{'user': { 'email': 'alexey2141@mail.ru', 'password': '12345678' ,'remember_me':'0'} }", new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseBody) {
-                //Toast.makeText(getBaseContext(), responseBody, Toast.LENGTH_SHORT).show();
+
+
+                Globals.Settings.edit().putString("login", Globals.Login).putString("password", Globals.Password).apply();
+
+                //TODO: Delete this line
+                Toast.makeText(getBaseContext(), Integer.toString(statusCode) + ":" + responseBody, Toast.LENGTH_SHORT).show();
                 progressBar.hide();
-                //TODO:User session
-                EditText UserLogin = (EditText) findViewById(R.id.Login);
-                EditText UserPassword = (EditText) findViewById(R.id.Password);
-                Globals.Login = UserLogin.getText().toString();
-                Globals.Password = UserPassword.getText().toString();
-                Globals.Session = "123";
 
                 Globals.EmergencyTemplate = getString(R.string.EmergencyTemplate);
 
@@ -87,6 +99,7 @@ public class LoginForm extends Activity {
             public void onFailure(int statusCode, Header[] headers, String responseBody, Throwable e) {
                 progressBar.hide();
                 Toast.makeText(getBaseContext(), getString(R.string.LoginConnectionError), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), responseBody, Toast.LENGTH_SHORT).show();
             }
 
         });
